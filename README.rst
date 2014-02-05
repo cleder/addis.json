@@ -1,6 +1,17 @@
 Introduction
 ============
 
+The list of fields that we would like to display on UNEP-Live.
 
-
-This product may contain traces of nuts.
+Database ID:
+Short Title:
+UNEP Priority:
+Focal Area:
+GEF Phase:
+Project Description:
+Geographic Scope: / Other Geographic Scope: / Region: / Sub-Region: / Country:
+Lead GEF Agency:
+Task Manager:
+Executing Agency:
+Date/Year
+Status:

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+  <!--index name="getDatabaseID"
+         meta_type="FieldIndex">
+    <indexed_attr value="getDatabaseID"/>
+  </index-->
+  <column value="getDatabaseID"/>
+
+  <!--index name="getGEFPhase"
+         meta_type="FieldIndex">
+    <indexed_attr value="getGEFPhase"/>
+  </index-->
+  <column value="getGEFPhase"/>
+
+  <!--index name="getScope"
+         meta_type="KeywordIndex">
+    <indexed_attr value="getScope"/>
+  </index-->
+  <column value="getScope"/>
+
+  <!--index name="getScopeOther"
+         meta_type="KeywordIndex">
+    <indexed_attr value="getScopeOther"/>
+  </index-->
+  <column value="getScopeOther"/>
+
+  <index name="getRegion"
+         meta_type="KeywordIndex">
+    <indexed_attr value="getRegion"/>
+  </index>
+  <column value="getRegion"/>
+
+  <!--index name="getSubRegion"
+         meta_type="KeywordIndex">
+    <indexed_attr value="getSubRegion"/>
+  </index-->
+  <column value="getSubRegion"/>
+
+  <!--index name="getLeadAgency"
+         meta_type="KeywordIndex">
+    <indexed_attr value="getLeadAgency"/>
+  </index-->
+  <column value="getLeadAgency"/>
+</object>

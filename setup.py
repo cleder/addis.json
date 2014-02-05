@@ -17,7 +17,7 @@ setup(name='addis.json',
       keywords='UNEP ADDIS Json API',
       author='Christian Ledermann',
       author_email='christian.ledermann@gmail.com',
-      url='http://svn.plone.org/svn/collective/',
+      url='https://github.com/cleder/addis.json',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['addis'],
@@ -25,11 +25,11 @@ setup(name='addis.json',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'simplejson',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
       # -*- Entry points: -*-
-
       [z3c.autoinclude.plugin]
       target = plone
       """,
