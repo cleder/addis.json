@@ -1,0 +1,16 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="addis.json">
+    <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="pgijson_view"
+      class=".pgijsonview.PGIJsonView"
+      template="pgijsonview.pt"
+      allowed_interface=".pgijsonview.IPGIJsonView"
+      permission="zope.Public"
+      />
+
+</configure>
