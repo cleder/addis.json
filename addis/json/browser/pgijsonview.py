@@ -1,7 +1,7 @@
 #
 
 import simplejson as json
-
+import time
 from ZODB.POSException import ConflictError
 from zope.interface import implements, Interface
 
@@ -120,6 +120,7 @@ class PGIJsonView(BrowserView):
         def missing(a):
             if a:
                 return a
+        t = time.time()
         result_list = []
         query, show_query = build_query(self.context, self.request)
         query['portal_type'] = 'ProjectGeneralInformation'
@@ -131,19 +132,69 @@ class PGIJsonView(BrowserView):
                 "ProjectTitle": missing(result.getProjectTitle),
                 "FocalAreas": missing(result.getFocalAreas),
                 "GEFPhase": missing(result.getGEFPhase),
-                "description": missing(result.Description),
                 "Scope": missing(result.getScope),
                 "ScopeOther": missing(result.getScopeOther),
                 "Region": missing(result.getRegion),
                 "SubRegion": missing(result.getSubRegion),
                 "Countries": missing(result.getCountries),
                 "LeadAgency": missing(result.getLeadAgency),
-                #"getCountryGrouping": missing(result.getCountryGrouping),
-                #"getCountryName": missing(result.getCountryName),
                 "ExecutingAgencies": missing(result.getExecutingAgencies),
                 "GEFid": missing(result.getGEFid),
-                "TaskManager": missing(result.getTaskManager),
-                "Year": missing(result.getYear),
+                "url": result.getURL(),
+            })
+        return json.dumps({"results": result_list,
+                        "metadata":{"duration": time.time() -t,
+                                    "query": query,
+                                    "totalresults": len(search_results)}
+                            })
+
+class PGIFullJsonView(PGIJsonView):
+
+    def __call__(self):
+        def missing(a):
+            if a:
+                return a
+        t = time.time()
+        result_list = []
+        query, show_query = build_query(self.context, self.request)
+        query['portal_type'] = 'ProjectGeneralInformation'
+        search_results = self.portal_catalog(**query)
+        for result in search_results:
+            obj = result.getObject()
+            try:
+                gef_alloc = str(obj.getTotalGEFAllocation())
+            except:
+                gef_alloc = 'Error computing GEF Allocation'
+            try:
+                unep_alloc = str(obj.getTotalUNEPAllocation())
+            except:
+                unep_alloc = 'Error computing UNEP Allocation'
+            result_list.append({
+                "DatabaseID": missing(result.getDatabaseID),
+                "title": missing(result.Title),
+                "ProjectTitle": missing(result.getProjectTitle),
+                "FocalAreas": missing(result.getFocalAreas),
+                "GEFPhase": missing(result.getGEFPhase),
+                "description": obj.getSummaryDescription(),
+                "Scope": missing(result.getScope),
+                "ScopeOther": missing(result.getScopeOther),
+                "Region": missing(result.getRegion),
+                "SubRegion": missing(result.getSubRegion),
+                "Countries": missing(result.getCountries),
+                "LeadAgency": missing(result.getLeadAgency),
+                "ExecutingAgencies": missing(result.getExecutingAgencies),
+                "GEFid": missing(result.getGEFid),
+                "url": result.getURL(),
+                "TaskManager": obj.getCurrentTM(),
+                #"Year": missing(result.getYear),
+                #'Status':
+                "TotalGEFAllocation": gef_alloc,
+                "TotalUNEPAllocation": unep_alloc,
                 #"tags": missing(result.Subject),
             })
-        return json.dumps(result_list)
+        return json.dumps({"results": result_list,
+                        "metadata":{"duration": time.time() -t,
+                                    "query": query,
+                                    "totalresults": len(search_results)}
+                            })
+

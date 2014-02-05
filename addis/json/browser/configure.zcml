@@ -13,4 +13,12 @@
       permission="zope.Public"
       />
 
+  <browser:page
+      for="*"
+      name="pgifulljson_view"
+      class=".pgijsonview.PGIFullJsonView"
+      allowed_interface=".pgijsonview.IPGIJsonView"
+      permission="zope.Public"
+      />
+
 </configure>
