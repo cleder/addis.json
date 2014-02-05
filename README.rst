@@ -28,9 +28,9 @@ After installing this product you should update the indexes:
 
 ::
 
-brains=context.portal_catalog(portal_type="ProjectGeneralInformation")
-for brain in brains:
-    obj = brain.getObject()
-    print 'reindex: ', '/'.join(obj.getPhysicalPath())
-    obj.reindexObject()
-return printed
+    brains=context.portal_catalog(portal_type="ProjectGeneralInformation")
+    for brain in brains:
+        obj = brain.getObject()
+        print 'reindex: ', '/'.join(obj.getPhysicalPath())
+        obj.reindexObject()
+    return printed
