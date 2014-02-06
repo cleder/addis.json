@@ -21,4 +21,12 @@
       permission="zope.Public"
       />
 
+  <browser:page
+      for="*"
+      name="indexedvalues_view"
+      class=".indexedvaluesview.IndexedValuesView"
+      allowed_interface=".indexedvaluesview.IIndexedValuesView"
+      permission="zope.Public"
+      />
+
 </configure>

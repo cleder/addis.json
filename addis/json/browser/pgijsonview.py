@@ -120,6 +120,7 @@ class PGIJsonView(BrowserView):
         def missing(a):
             if a:
                 return a
+        self.request.RESPONSE.setHeader('Content-Type','application/json; charset=utf-8')
         t = time.time()
         result_list = []
         query, show_query = build_query(self.context, self.request)
@@ -154,6 +155,7 @@ class PGIFullJsonView(PGIJsonView):
         def missing(a):
             if a:
                 return a
+        self.request.RESPONSE.setHeader('Content-Type','application/json; charset=utf-8')
         t = time.time()
         result_list = []
         query, show_query = build_query(self.context, self.request)
